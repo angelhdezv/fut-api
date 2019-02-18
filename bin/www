@@ -1,0 +1,46 @@
+#!/usr/bin/env node
+"use strict";
+
+//module dependencies
+var server = require("../dist/app");
+var debug = require("debug")("express:server");
+var http = require("http");
+
+//create http server
+var httpServer = server.App.start().server;
+httpServer.on("error", onError);
+httpServer.on("listening", onListening);
+
+
+//Error handling
+function onError(error) {
+  if (error.syscall !== "listen") {
+    throw error;
+  }
+
+  var bind = typeof httpPort === "string"
+    ? "Pipe " + httpPort
+    : "Port " + httpPort;
+
+  switch (error.code) {
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
+      process.exit(1);
+      break;
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
+
+//On listening event
+function onListening() {
+  var addr = httpServer.address();
+  var bind = typeof addr === "string"
+    ? "pipe " + addr
+    : "port " + addr.port;
+  debug("Listening on " + bind);
+}

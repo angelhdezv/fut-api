@@ -1,0 +1,622 @@
+@font-face {
+  src: local('Roboto'), local('Roboto-Regular'), url(https://fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxKKTU1Kg.woff2) format('woff2');
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215;
+}
+
+
+/* ------------------------------------------------------------------------------------------
+ * Content
+ * ------------------------------------------------------------------------------------------ */
+body {
+  min-width: 980px;
+  max-width: 1280px;
+  background-color: #fafafa; 
+}
+
+body, p, a, div, th, td {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+td.code {
+  font-size: 14px;
+  font-family: "Source Code Pro", monospace;
+  font-style: normal;
+  font-weight: 400;
+}
+
+#content {
+  padding-top: 16px;
+  z-Index: -1;
+  margin-left: 290px;
+}
+
+p {
+  color: #808080;
+}
+
+h1 {
+  font-family: Roboto, Helvetica, sans-serif;
+  font-weight: normal;
+  font-size: 44px;
+  line-height: 50px;
+  margin: 0 0 10px 0;
+  padding: 0;
+  padding-top: 10px;
+  color: #00a7df;
+}
+
+h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 40px;
+  margin: 0 0 20px 0;
+  padding: 0;
+  color: #808080;
+}
+
+h3 {
+  color: #999;
+}
+
+h4 {
+  color: #999;
+}
+
+section {
+  border-top: 1px solid #ebebeb;
+  padding: 30px 0;
+}
+
+section h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  padding-bottom: 14px;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+article {
+  padding: 14px 0 30px 0;
+}
+
+article h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 26px;
+  color: #333;
+}
+
+article h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 24px;
+  margin: 0 0 10px 0;
+}
+
+article h3 {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 18px;
+  margin: 0 0 10px 0;
+}
+
+article h4 {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+  margin: 0 0 8px 0;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 0 0 20px 0;
+  background-color: #fff;
+}
+
+th {
+  background-color: #f5f5f5;
+  text-align: left;
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 700;
+  padding: 4px 8px;
+  border: #e0e0e0 1px solid;
+}
+
+td {
+  vertical-align: top;
+  padding: 10px 8px 0 8px;
+  border: #e0e0e0 1px solid;
+}
+
+#generator .content {
+  color: #b0b0b0;
+  border-top: 1px solid #ebebeb;
+  padding: 10px 0;
+}
+
+.label-optional {
+  float: right;
+  background-color: grey;
+  margin-top: 4px;
+}
+
+.open-left {
+  right: 0;
+  left: auto;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * apidoc - intro
+ * ------------------------------------------------------------------------------------------ */
+
+#apidoc .apidoc {
+  border-top: 1px solid #ebebeb;
+  padding: 30px 0;
+}
+
+#apidoc h1 {
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 40px;
+  padding-bottom: 14px;
+  margin: 0 0 20px 0;
+  padding: 0;
+}
+
+#apidoc h2 {
+  font-family: Roboto, sans-serif;
+  font-weight: 600;
+  font-size: 22px;
+  line-height: 26px;
+  padding-top: 14px;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * pre / code
+ * ------------------------------------------------------------------------------------------ */
+pre {
+  background-color: #292b36;
+  color: #ffffff;
+  padding: 10px;
+  border-radius: 6px;
+  position: relative;
+  margin: 10px 0 20px 0;
+  overflow-x: auto;
+}
+
+pre.prettyprint {
+  width: 100%;
+}
+
+code.language-text {
+  word-wrap: break-word;
+}
+
+pre.language-json {
+  overflow: auto;
+}
+
+pre.language-html {
+  margin: 0 0 20px 0;
+}
+
+.type {
+  font-family: "Source Sans Pro", sans-serif;
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-block;
+  margin: 0 0 5px 0;
+  padding: 4px 5px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  background-color: #3387CC;
+  color: #ffffff;
+}
+
+.type__get {
+  background-color: #00aa00;
+}
+
+.type__put {
+  background-color: #eac500;
+}
+
+.type__post {
+  background-color: #4080e0;
+}
+
+.type__delete {
+  background-color: #e07070;
+}
+
+pre.language-api .str {
+  color: #ffffff;
+}
+
+pre.language-api .pln,
+pre.language-api .pun {
+  color: #65B042;
+}
+
+pre code {
+  display: block;
+  font-size: 14px;
+  font-family: "Source Code Pro", monospace;
+  font-style: normal;
+  font-weight: 400;
+  word-wrap: normal;
+  white-space: pre;
+}
+
+pre code.sample-request-response-json {
+  white-space: pre-wrap;
+  max-height: 500px;
+  overflow: auto;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Sidenav
+ * ------------------------------------------------------------------------------------------ */
+.sidenav {
+  width: 250px;
+  margin: 0;
+  padding: 5px 20px 20px 20px;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background-color: #00A7DF;
+  z-index: 10;
+  box-shadow: 2px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.sidenav > li > a {
+  display: block;
+  width: 210px;
+  margin: 0;
+  padding: 5px 11px;
+  border: 0;
+  border-left: transparent 4px solid;
+  border-right: transparent 4px solid;
+  font-family: Roboto, sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: rgba(255,255,255,0.85);
+}
+
+.sidenav > li > a:hover{
+  background: #009ed7;
+}
+
+.sidenav > li.nav-header {
+  margin-top: 18px;
+  margin-bottom: 4px;
+}
+
+.sidenav > li.nav-header > a {
+  padding: 8px 11px 8px 11px;
+  width: 190px;
+  font-family: Roboto, sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.sidenav > li.nav-header.active > a {
+  color: #fff;
+}
+
+
+.sidenav > li.active > a {
+    position: relative;
+    z-index: 2;
+    background-color: rgb(255,255,255,0.2);
+    color: #ffffff;
+}
+
+.sidenav > li.has-modifications a {
+  border-right: #60d060 4px solid;
+}
+
+.sidenav > li.is-new a {
+  border-left: rgba(255,255,255,0.1) 4px solid;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Side nav search
+ * ------------------------------------------------------------------------------------------ */
+.sidenav-search {
+  width: 250px;
+  left: 0px;
+  position: fixed;
+  padding: 16px 20px 10px 20px;
+  background-color: #009ed7;
+  z-index: 11;
+}
+
+.sidenav-search .search {
+  height: 26px;
+}
+
+.search-reset {
+  position: absolute;
+  display: block;
+  cursor: pointer;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  right: 28px;
+  top: 17px;
+  background-color: #fff;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Compare
+ * ------------------------------------------------------------------------------------------ */
+
+ins {
+  background: #60d060;
+  text-decoration: none;
+  color: #000000;
+}
+
+del {
+  background: #f04040;
+  color: #000000;
+}
+
+.label-ins {
+  background-color: #60d060;
+}
+
+.label-del {
+  background-color: #f05050;
+  text-decoration: line-through;
+}
+
+pre.ins {
+  background-color: #60d060;
+}
+
+pre.del {
+  background-color: #f05050;
+  text-decoration: line-through;
+}
+
+table.ins th,
+table.ins td {
+  background-color: #60d060;
+}
+
+table.del th,
+table.del td {
+  background-color: #f05050;
+  text-decoration: line-through;
+}
+
+tr.ins td {
+  background-color: #60d060;
+}
+
+tr.del td {
+  background-color: #f05050;
+  text-decoration: line-through;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Spinner
+ * ------------------------------------------------------------------------------------------ */
+
+#loader {
+  position: absolute;
+  width: 100%;
+}
+
+#loader p {
+  padding-top: 80px;
+  margin-left: -4px;
+}
+
+.spinner {
+  margin: 200px auto;
+  width: 60px;
+  height: 60px;
+  position: relative;
+}
+
+.container1 > div, .container2 > div, .container3 > div {
+  width: 14px;
+  height: 14px;
+  background-color: #0088cc;
+
+  border-radius: 100%;
+  position: absolute;
+  -webkit-animation: bouncedelay 1.2s infinite ease-in-out;
+  animation: bouncedelay 1.2s infinite ease-in-out;
+  /* Prevent first frame from flickering when animation starts */
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.spinner .spinner-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.container2 {
+  -webkit-transform: rotateZ(45deg);
+  transform: rotateZ(45deg);
+}
+
+.container3 {
+  -webkit-transform: rotateZ(90deg);
+  transform: rotateZ(90deg);
+}
+
+.circle1 { top: 0; left: 0; }
+.circle2 { top: 0; right: 0; }
+.circle3 { right: 0; bottom: 0; }
+.circle4 { left: 0; bottom: 0; }
+
+.container2 .circle1 {
+  -webkit-animation-delay: -1.1s;
+  animation-delay: -1.1s;
+}
+
+.container3 .circle1 {
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
+}
+
+.container1 .circle2 {
+  -webkit-animation-delay: -0.9s;
+  animation-delay: -0.9s;
+}
+
+.container2 .circle2 {
+  -webkit-animation-delay: -0.8s;
+  animation-delay: -0.8s;
+}
+
+.container3 .circle2 {
+  -webkit-animation-delay: -0.7s;
+  animation-delay: -0.7s;
+}
+
+.container1 .circle3 {
+  -webkit-animation-delay: -0.6s;
+  animation-delay: -0.6s;
+}
+
+.container2 .circle3 {
+  -webkit-animation-delay: -0.5s;
+  animation-delay: -0.5s;
+}
+
+.container3 .circle3 {
+  -webkit-animation-delay: -0.4s;
+  animation-delay: -0.4s;
+}
+
+.container1 .circle4 {
+  -webkit-animation-delay: -0.3s;
+  animation-delay: -0.3s;
+}
+
+.container2 .circle4 {
+  -webkit-animation-delay: -0.2s;
+  animation-delay: -0.2s;
+}
+
+.container3 .circle4 {
+  -webkit-animation-delay: -0.1s;
+  animation-delay: -0.1s;
+}
+
+@-webkit-keyframes bouncedelay {
+  0%, 80%, 100% { -webkit-transform: scale(0.0) }
+  40% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bouncedelay {
+  0%, 80%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 40% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Tabs
+ * ------------------------------------------------------------------------------------------ */
+ul.nav-tabs {
+  margin: 0;
+}
+
+p.deprecated span{
+  color: #ff0000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------------------------
+ * Print
+ * ------------------------------------------------------------------------------------------ */
+
+@media print {
+
+  #sidenav,
+  #version,
+  #versions,
+  section .version,
+  section .versions {
+    display: none;
+  }
+
+  #content {
+    margin-left: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  a:after {
+    content: " [" attr(href) "] ";
+  }
+
+  p {
+    color: #000000
+  }
+
+  pre {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 10px;
+    border: #808080 1px solid;
+    border-radius: 6px;
+    position: relative;
+    margin: 10px 0 20px 0;
+  }
+
+} /* /@media print */
+
+
+/* ------------------------------------------------------------------------------------------
+ * Custom
+ * ------------------------------------------------------------------------------------------ */
+
+.form-group label{
+  width: 90px !important;
+  color: #888;
+}
+.form-group .input-group{
+  padding: 4px 0px;
+}
+.form-horizontal input[type=checkbox], .form-horizontal input[type=radio]{
+  display: none !important;
+}
+#request-url label{
+  width: 0% !important;
+}
