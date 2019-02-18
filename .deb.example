@@ -1,0 +1,17 @@
+require("module-alias/register");
+import * as dotenv from "dotenv";
+
+class Debug
+{
+  constructor()
+  {
+    dotenv.config();
+  }
+
+  async main(): Promise<any>
+  {
+    //TODO
+  }
+}
+
+new Debug().main();

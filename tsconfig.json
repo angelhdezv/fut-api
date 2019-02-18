@@ -1,0 +1,38 @@
+{
+	"compilerOptions": {
+		"lib": [
+			"es5",
+			"es6",
+			"dom"
+		],
+		"rootDir": "./",
+		"outDir": "./dist",
+		"sourceMap": true,
+		"baseUrl": ".",
+		"paths": {
+			"@http/*": [
+				"http/latest/*"
+			],
+			"@controllers/*": [
+				"http/latest/controllers/*"
+			],
+			"@middlewares/*": [
+				"http/latest/middlewares/*"
+			],
+			"@repositories/*": [
+				"src/latest/repositories/*"
+			],
+			"@models/*": [
+				"src/latest/models/*"
+			],
+			"@sql/*": [
+				"src/latest/sources/sql/*"
+			]
+		}
+	},
+	"exclude": [
+		"./node_modules",
+		"./docs",
+		"./assets"
+	]
+}
