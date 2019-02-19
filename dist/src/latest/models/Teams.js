@@ -23,7 +23,9 @@ var Teams = /** @class */ (function (_super) {
     }
     Teams.prototype.build = function (name, Urplayers) {
         this.name = name;
-        this.players = Urplayers;
+        if (Urplayers) {
+            this.players = Urplayers;
+        }
         return this;
     };
     Teams.prototype.toJSON = function () {

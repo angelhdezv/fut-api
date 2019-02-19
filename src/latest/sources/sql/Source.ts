@@ -73,7 +73,8 @@ class Source extends Executor implements Repository
 
     const query =
       "INSERT INTO player (id_player, nombre,id_team)";
-    const params = [player.id, player.name, player.team.id];
+    const Team: Teams = await this.saveTeam(new Teams(Generator.getId()).build(player.team.toString()));
+    const params = [player.id, player.name, Team.id];
     await this.save(query, params);
     return this.getPlayersDetails(player.id);
   }
@@ -101,7 +102,7 @@ class Source extends Executor implements Repository
   {
     const eQuery = "SELECT id_team FROM team WHERE nombre = ?"
     const exist = await this.getAny(eQuery, [team.name]);
-    if (exist[0]) return this.getTeamsDetails(exist[0].id);
+    if (exist[0]) return this.getTeamsDetails(team.id);
 
     const query =
       "INSERT INTO team (id_team, nombre)";

@@ -49,6 +49,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 };
 exports.__esModule = true;
 var Util_1 = require("@models/helpers/Util");
+var Teams_1 = require("@models/Teams");
 var Executor_1 = require("./Executor");
 var Mapper = require("./Mappers");
 var Source = /** @class */ (function (_super) {
@@ -159,7 +160,7 @@ var Source = /** @class */ (function (_super) {
     };
     Source.prototype.savePlayer = function (player) {
         return __awaiter(this, void 0, void 0, function () {
-            var eQuery, exist, query, params;
+            var eQuery, exist, query, Team, params;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -170,9 +171,12 @@ var Source = /** @class */ (function (_super) {
                         if (exist[0])
                             return [2 /*return*/, this.getPlayersDetails(player.id)];
                         query = "INSERT INTO player (id_player, nombre,id_team)";
-                        params = [player.id, player.name, player.team.id];
-                        return [4 /*yield*/, this.save(query, params)];
+                        return [4 /*yield*/, this.saveTeam(new Teams_1["default"](Util_1.Generator.getId()).build(player.team.toString()))];
                     case 2:
+                        Team = _a.sent();
+                        params = [player.id, player.name, Team.id];
+                        return [4 /*yield*/, this.save(query, params)];
+                    case 3:
                         _a.sent();
                         return [2 /*return*/, this.getPlayersDetails(player.id)];
                 }
@@ -221,7 +225,7 @@ var Source = /** @class */ (function (_super) {
                     case 1:
                         exist = _a.sent();
                         if (exist[0])
-                            return [2 /*return*/, this.getTeamsDetails(exist[0].id)];
+                            return [2 /*return*/, this.getTeamsDetails(team.id)];
                         query = "INSERT INTO team (id_team, nombre)";
                         params = [team.id, team.name];
                         return [4 /*yield*/, this.save(query, params)];

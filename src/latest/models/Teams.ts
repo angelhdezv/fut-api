@@ -14,10 +14,10 @@ class Teams extends Model
     this.id = id;
   }
 
-  build(name: string, Urplayers: Player[]): Teams
+  build(name: string, Urplayers?: Player[]): Teams
   {
     this.name = name;
-    this.players=Urplayers;
+    if(Urplayers){this.players=Urplayers;}
     return this;
   }
 
