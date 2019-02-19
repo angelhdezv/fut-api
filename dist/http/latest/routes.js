@@ -47,7 +47,7 @@ var Routes = /** @class */ (function () {
          *
          * @apiSuccess {Player} player Player object.
         */
-        this.router.post("/players/:id", function (req, res) { return _this.players.save(req, res); });
+        this.router.post("/players/:id/:name/:team", function (req, res) { return _this.players.save(req, res); });
         /**
          * @api {put} /pets/:id Update a pet
          * @apiName UpdatePlayer

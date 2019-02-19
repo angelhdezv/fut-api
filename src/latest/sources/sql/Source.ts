@@ -67,8 +67,8 @@ class Source extends Executor implements Repository
 
   async savePlayer(player: Player): Promise<Player>
   {
-    const eQuery = "SELECT id_player FROM player WHERE nombre = ?"
-    const exist = await this.getAny(eQuery, [player.name]);
+    const eQuery = "SELECT id_player FROM player WHERE id_player = ?"
+    const exist = await this.getAny(eQuery, [player.id]);
     if (exist[0]) return this.getPlayersDetails(exist[0].id);
 
     const query =

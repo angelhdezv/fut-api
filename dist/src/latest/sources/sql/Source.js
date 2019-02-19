@@ -163,8 +163,8 @@ var Source = /** @class */ (function (_super) {
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        eQuery = "SELECT id_player FROM player WHERE nombre = ?";
-                        return [4 /*yield*/, this.getAny(eQuery, [player.name])];
+                        eQuery = "SELECT id_player FROM player WHERE id_player = ?";
+                        return [4 /*yield*/, this.getAny(eQuery, [player.id])];
                     case 1:
                         exist = _a.sent();
                         if (exist[0])

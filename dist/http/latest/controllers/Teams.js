@@ -35,17 +35,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var Mocks_1 = require("@models/helpers/Mocks");
 var util_1 = require("@http/controllers/util");
 var Teams = /** @class */ (function () {
-    function Teams() {
+    function Teams(sql) {
+        this.sql = sql;
     }
     Teams.prototype.getList = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
             var result;
             return __generator(this, function (_a) {
-                result = Mocks_1["default"].Teams();
-                return [2 /*return*/, util_1["default"].sendList(res, result)];
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.sql.getTeamsList()];
+                    case 1:
+                        result = _a.sent();
+                        return [2 /*return*/, util_1["default"].sendList(res, result)];
+                }
             });
         });
     };

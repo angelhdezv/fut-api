@@ -2,6 +2,8 @@ import { Request, Response } from "express";
 import Sql from "@repositories/sql";
 import Res from "@http/controllers/util";
 import Mocks from "@models/helpers/Mocks";
+import { Generator } from "@models/helpers/Util";
+import Player from "@models/Player";
 
 class Players
 {
@@ -27,8 +29,13 @@ class Players
 
   async save(req: Request, res: Response)
   {
-    const result = Mocks.Players()[0];
-    return Res.sendModel(res, result);
+    let player = new Player(req.params.id)
+            .build(
+                req.params.name,
+                req.params.team
+            );
+            player = await this.sql.savePlayer(player);
+    return Res.sendModel(res, player);
   }
 
   async update(req: Request, res: Response)

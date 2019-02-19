@@ -63,7 +63,7 @@ class Routes
      * @apiSuccess {Player} player Player object.
     */
 
-    this.router.post("/players/:id", (req, res) => this.players.save(req, res));
+    this.router.post("/players/:id/:name/:team", (req, res) => this.players.save(req, res));
 
     /**
      * @api {put} /pets/:id Update a pet

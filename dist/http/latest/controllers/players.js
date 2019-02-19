@@ -37,6 +37,7 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
 exports.__esModule = true;
 var util_1 = require("@http/controllers/util");
 var Mocks_1 = require("@models/helpers/Mocks");
+var Player_1 = require("@models/Player");
 var Players = /** @class */ (function () {
     function Players(sql) {
         this.sql = sql;
@@ -71,10 +72,17 @@ var Players = /** @class */ (function () {
     };
     Players.prototype.save = function (req, res) {
         return __awaiter(this, void 0, void 0, function () {
-            var result;
+            var player;
             return __generator(this, function (_a) {
-                result = Mocks_1["default"].Players()[0];
-                return [2 /*return*/, util_1["default"].sendModel(res, result)];
+                switch (_a.label) {
+                    case 0:
+                        player = new Player_1["default"](req.params.id)
+                            .build(req.params.name, req.params.team);
+                        return [4 /*yield*/, this.sql.savePlayer(player)];
+                    case 1:
+                        player = _a.sent();
+                        return [2 /*return*/, util_1["default"].sendModel(res, player)];
+                }
             });
         });
     };

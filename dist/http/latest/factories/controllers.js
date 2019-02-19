@@ -11,7 +11,7 @@ var Controllers = /** @class */ (function () {
         return new players_1["default"](Source_1["default"].getInstance());
     };
     Controllers.createTeams = function () {
-        return new Teams_1["default"]();
+        return new Teams_1["default"](Source_1["default"].getInstance());
     };
     Controllers.createMatches = function () {
         return new match_1["default"]();
