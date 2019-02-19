@@ -69,7 +69,7 @@ class Source extends Executor implements Repository
   {
     const eQuery = "SELECT id_player FROM player WHERE id_player = ?"
     const exist = await this.getAny(eQuery, [player.id]);
-    if (exist[0]) return this.getPlayersDetails(exist[0].id);
+    if (exist[0]) return this.getPlayersDetails(player.id);
 
     const query =
       "INSERT INTO player (id_player, nombre,id_team)";

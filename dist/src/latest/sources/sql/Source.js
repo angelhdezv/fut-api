@@ -168,7 +168,7 @@ var Source = /** @class */ (function (_super) {
                     case 1:
                         exist = _a.sent();
                         if (exist[0])
-                            return [2 /*return*/, this.getPlayersDetails(exist[0].id)];
+                            return [2 /*return*/, this.getPlayersDetails(player.id)];
                         query = "INSERT INTO player (id_player, nombre,id_team)";
                         params = [player.id, player.name, player.team.id];
                         return [4 /*yield*/, this.save(query, params)];
