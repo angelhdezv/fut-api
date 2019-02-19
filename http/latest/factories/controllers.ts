@@ -1,4 +1,4 @@
- import Players from "@http/controllers/players";
+import Players from "@http/controllers/players";
 import Teams from "@http/controllers/Teams";
 import Sql from "@sql/Source";
 import Matches from "@http/controllers/match";
@@ -14,7 +14,7 @@ class Controllers
 
   static createTeams()
   {
-    return new Teams();
+    return new Teams(Sql.getInstance());
   }
 
   static createMatches()
