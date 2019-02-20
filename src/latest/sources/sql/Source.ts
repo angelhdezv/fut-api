@@ -49,7 +49,7 @@ class Source extends Executor implements Repository
 
   async fetchTeam(teams: Teams[]): Promise<Teams[]>
   {
-    const cQuery = "SELECT id_player FROM player WHERE id_team = ?";
+    const cQuery = "SELECT p.id_player FROM player p WHERE p.id_team = ?";
     for (let team of teams) {
       let players = [];
       let cPlayers = await this.getAny(cQuery, [team.id]);

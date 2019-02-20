@@ -132,7 +132,7 @@ var Source = /** @class */ (function (_super) {
             return __generator(this, function (_d) {
                 switch (_d.label) {
                     case 0:
-                        cQuery = "SELECT id_player FROM player WHERE id_team = ?";
+                        cQuery = "SELECT p.id_player FROM player p WHERE p.id_team = ?";
                         _i = 0, teams_1 = teams;
                         _d.label = 1;
                     case 1:
