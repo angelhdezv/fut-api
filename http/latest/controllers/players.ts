@@ -4,6 +4,7 @@ import Res from "@http/controllers/util";
 import Mocks from "@models/helpers/Mocks";
 import { Generator } from "@models/helpers/Util";
 import Player from "@models/Player";
+import Teams from "@models/Teams";
 
 class Players
 {
@@ -40,12 +41,22 @@ class Players
 
   async update(req: Request, res: Response)
   {
-    const result = Mocks.Players()[0];
+    const id = req.params.id;
+    const name=req.params.name;
+    let teams = new Teams(Generator.getId())
+            .build(
+              req.params.team
+            );
+    await this.sql.saveTeam(teams);
+    const result = await this.sql.setPlayer(id, name, teams);
+
     return Res.sendModel(res, result);
   }
 
   async delete(req: Request, res: Response)
   {
+    const id=req.params.id;
+    await this.sql.deletePlayer(id);
     return Res.sendOk(res);
   }
 }

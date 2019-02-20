@@ -8,7 +8,7 @@ interface Sql
   getPlayersDetails(playerId: number): Promise<Player>;
   fetchMatches(players: Player[]): Promise<Player[]>;
   savePlayer(player: Player): Promise<Player>;
-  setPlayer(playerId: number): Promise<Player>;
+  setPlayer(playerId: number, name?: string, Team?: Teams): Promise<Player>;
   deletePlayer(playerId: number): Promise<void>;
   saveTeam(team: Teams): Promise<Teams>;
   setTeam(teamId: number): Promise<Teams>;

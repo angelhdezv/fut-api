@@ -74,7 +74,7 @@ class Source extends Executor implements Repository
     const query =
       "INSERT INTO player (id_player, nombre,id_team)";
     const Team: Teams = await this.saveTeam(new Teams(Generator.getId()).build(player.team.toString()));
-    const params = [player.id, player.name, Team.id];
+    const params = [player.id, player.name,Team.id];
     await this.save(query, params);
     return this.getPlayersDetails(player.id);
   }
