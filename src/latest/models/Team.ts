@@ -1,7 +1,7 @@
 import Model from "./Model";
 import Player from "./Player";
 
-class Teams extends Model
+class Team extends Model
 {
 
   id: number;
@@ -14,10 +14,10 @@ class Teams extends Model
     this.id = id;
   }
 
-  build(name: string, Urplayers?: Player[]): Teams
+  build(name: string, players?: Player[]): Team
   {
     this.name = name;
-    if(Urplayers){this.players=Urplayers;}
+    if(players){this.players=players;}
     return this;
   }
 
@@ -26,9 +26,9 @@ class Teams extends Model
     return {
       id: this.id,
       name: this.name,
-      MyPlayers: this.players
+      players: this.players
     };
   }
 }
 
-export default Teams;
+export default Team;

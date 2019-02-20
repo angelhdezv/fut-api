@@ -1,7 +1,7 @@
 import Repository from "@repositories/sql";
 import { Pair, Generator } from "@models/helpers/Util";
 import Player from "@models/Player";
-import Teams from "@models/Teams";
+import Team from "@models/Team";
 import Executor from "./Executor";
 import * as Mapper from "./Mappers";
 
@@ -9,52 +9,52 @@ import * as Mapper from "./Mappers";
 class Source extends Executor implements Repository
 {
   
-  async getPlayersList(): Promise<Player[]>
+  async getPlayerList(): Promise<Player[]>
   {
     const query =
-      `SELECT * FROM Player`;
+      `SELECT p.* FROM Player p`;
     const filter = [];
     const res = await this.get(query, filter, new Mapper.PlayerMapper());
     return res;
   }
 
-  async getTeamsList(teamId?: number): Promise<Teams[]>
+  async getTeamList(teamId?: number): Promise<Team[]>
   {
     const query =
-      `SELECT * FROM team`;
+      `SELECT t.* FROM team t`;
     const filter = [];
     if (teamId) filter.push(new Pair("id_team", teamId));
-    const res = await this.get(query, filter, new Mapper.TeamsMapper());
+    const res = await this.get(query, filter, new Mapper.TeamMapper());
      return this.fetchTeam(res);
   }
 
-  async getPlayersDetails(playerId: number): Promise<Player>
+  async getPlayerDetails(playerId: number): Promise<Player>
   {
     const query =
-      `SELECT * FROM Player WHERE id_player = ?`;
+      `SELECT p.* FROM Player p WHERE p.id_player = ?`;
     const params = [playerId];
     const res = await this.getDetails(query, params, new Mapper.PlayerMapper());
     return res[0];
   }
 
-  async getTeamsDetails(teamId: number): Promise<Teams>
+  async getTeamDetails(teamId: number): Promise<Team>
   {
     const query =
-      `SELECT * FROM team WHERE id_team = ?`;
+      `SELECT t.* FROM team t WHERE t.id_team = ?`;
     const params = [teamId];
-    const res = await this.getDetails(query, params, new Mapper.TeamsMapper());
+    const res = await this.getDetails(query, params, new Mapper.TeamMapper());
     const fetch = await this.fetchTeam(res);
     return fetch[0];
   }
 
-  async fetchTeam(teams: Teams[]): Promise<Teams[]>
+  async fetchTeam(teams: Team[]): Promise<Team[]>
   {
     const cQuery = "SELECT p.id_player FROM player p WHERE p.id_team = ?";
     for (let team of teams) {
       let players = [];
       let cPlayers = await this.getAny(cQuery, [team.id]);
       for (let player of cPlayers){
-        players.push(await this.getPlayersDetails(player))
+        players.push(await this.getPlayerDetails(player))
       }
       Object.assign(team,
         {
@@ -66,16 +66,16 @@ class Source extends Executor implements Repository
 
   async savePlayer(player: Player): Promise<Player>
   {
-    const eQuery = "SELECT id_player FROM player WHERE id_player = ?"
+    const eQuery = "SELECT p.id_player FROM player p WHERE p.id_player = ?"
     const exist = await this.getAny(eQuery, [player.id]);
-    if (exist[0]) return this.getPlayersDetails(player.id);
+    if (exist[0]) return this.getPlayerDetails(player.id);
 
     const query =
       "INSERT INTO player (id_player, nombre,id_team)";
-    const Team: Teams = await this.saveTeam(new Teams(Generator.getId()).build(player.team.toString()));
-    const params = [player.id, player.name,Team.id];
+    const team: Team = await this.saveTeam(new Team(Generator.getId()).build(player.team.toString()));
+    const params = [player.id, player.name,team.id];
     await this.save(query, params);
-    return this.getPlayersDetails(player.id);
+    return this.getPlayerDetails(player.id);
   }
 
   async setPlayer(playerId: number, Team?: number): Promise<Player>
@@ -84,7 +84,7 @@ class Source extends Executor implements Repository
     const columns = [];
     if (Team) columns.push(new Pair("id_team", Team));
     await this.set(query, columns, "id_player", playerId);
-    return this.getPlayersDetails(playerId);
+    return this.getPlayerDetails(playerId);
   }
  
    async deletePlayer(playerId: number): Promise<void>
@@ -96,19 +96,19 @@ class Source extends Executor implements Repository
     return this.delete(query, params);
   }
 
-  async saveTeam(team: Teams): Promise<Teams>
+  async saveTeam(team: Team): Promise<Team>
   {
-    const eQuery = "SELECT id_team FROM team WHERE nombre = ?"
+    const eQuery = "SELECT t.id_team FROM team t WHERE t.nombre = ?"
     const exist = await this.getAny(eQuery, [team.name]);
-    if (exist[0]) return this.getTeamsDetails(team.id);
+    if (exist[0]) return this.getTeamDetails(team.id);
 
     const query =
       "INSERT INTO team (id_team, nombre)";
     const params = [team.id, team.name];
     await this.save(query, params);
-    return this.getTeamsDetails(team.id);
+    return this.getTeamDetails(team.id);
   }
-  async setTeam(teamId: number, name?: string, players?: Player[]): Promise<Teams>
+  async setTeam(teamId: number, name?: string, players?: Player[]): Promise<Team>
   {
     const query = "UPDATE Team";
     const columns = [];
@@ -126,7 +126,7 @@ class Source extends Executor implements Repository
         await this.save(cQuery, cValues);
       }
     }
-    return this.getTeamsDetails(teamId);
+    return this.getTeamDetails(teamId);
   }
   async deleteTeam(teamId: number): Promise<void>
   {

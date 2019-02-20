@@ -1,14 +1,14 @@
 import Model from "./Model";
-import Teams from "./Teams";
+import Team from "./Team";
 
 
 
-class Matches extends Model
+class Match extends Model
 {
 
   id: number;
-  Home: Teams;
-  Visit: Teams;
+  Home: Team;
+  Visit: Team;
   Score: number[];
 
 
@@ -18,7 +18,7 @@ class Matches extends Model
     this.id = id;
   }
 
-  build(local: Teams, Visitante:Teams, Marcador: number[] ): Matches
+  build(local: Team, Visitante:Team, Marcador: number[] ): Match
   {
     this.Home = local;
     this.Visit = Visitante;
@@ -37,4 +37,4 @@ class Matches extends Model
   }
 }
 
-export default Matches;
+export default Match;

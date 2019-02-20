@@ -1,6 +1,6 @@
 import Player from "@models/Player";
-import Teams from "@models/Teams";
-import Matches from "@models/Matches"
+import Team from "@models/Team";
+import Match from "@models/Match"
 
 
 abstract class Mapper<T>
@@ -23,30 +23,30 @@ class PlayerMapper extends Mapper<Player>
     return new Player(data.id_player)
       .build(
         data.nombre,
-        new Teams(data.id_team));
+        new Team(data.id_team));
   }
 }
 
-class TeamsMapper extends Mapper<Teams>
+class TeamMapper extends Mapper<Team>
 {
-  transform(data: any): Teams  
+  transform(data: any): Team
   {
-    return new Teams(data.id_team)
+    return new Team(data.id_team)
       .build(
         data.nombre,
         []);
   }
 }
-class MatchMapper extends Mapper<Matches>
+class MatchMapper extends Mapper<Match>
 {
-  transform(data: any): Matches
+  transform(data: any): Match
   {
-    return new Matches(data.id)
+    return new Match(data.id)
       .build(
-        new Teams(data.id_EquipoLocal),
-        new Teams(data.id_Equipovisitante),
+        new Team(data.id_EquipoLocal),
+        new Team(data.id_Equipovisitante),
         [data.golesLocal,data.golesVisit]);
   }
 }
 
-export { PlayerMapper, TeamsMapper, MatchMapper, Mapper };
+export { PlayerMapper, TeamMapper, MatchMapper, Mapper };

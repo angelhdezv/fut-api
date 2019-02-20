@@ -1,5 +1,5 @@
 import Model from "./Model";
-import Teams from "./Teams";
+import Team from "./Team";
 
 
 class Player extends Model
@@ -7,7 +7,7 @@ class Player extends Model
 
   id: number;
   name: string;
-  team: Teams;
+  team: Team;
 
   constructor(id: number)
   {
@@ -15,10 +15,10 @@ class Player extends Model
     this.id = id;
   }
 
-  build(name: string, Uteam:Teams ): Player
+  build(name: string, team:Team ): Player
   {
     this.name = name;
-    this.team = Uteam;
+    this.team = team;
     return this;
   }
 
@@ -27,7 +27,7 @@ class Player extends Model
     return {
       id: this.id,
       name: this.name,
-      teams: this.team
+      team: this.team
     };
   }
 }

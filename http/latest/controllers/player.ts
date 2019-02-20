@@ -1,12 +1,10 @@
 import { Request, Response } from "express";
 import Sql from "@repositories/sql";
 import Res from "@http/controllers/util";
-import Mocks from "@models/helpers/Mocks";
-import { Generator } from "@models/helpers/Util";
 import Player from "@models/Player";
-import Teams from "@models/Teams";
 
-class Players
+
+class player
 {
   private sql: Sql;
 
@@ -56,4 +54,4 @@ class Players
   }
 }
 
-export default Players;
+export default player;

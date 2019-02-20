@@ -1,6 +1,6 @@
 import Player from "@models/Player";
-import Team from "@models/Teams";
-import Matches from "@models/Matches"
+import Team from "@models/Team";
+import Matches from "@models/Match"
 import { Generator } from "@models/helpers/Util";
 
 class Mocks

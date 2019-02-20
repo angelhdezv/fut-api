@@ -1,7 +1,7 @@
 import {Router} from "express";
 import Factory from "@http/factories/controllers";
-import Players from "@http/controllers/players";
-import Teams from "@http/controllers/Teams";
+import Players from "@http/controllers/player";
+import Teams from "@http/controllers/team";
 import Matches from "@http/controllers/match";
 
 class Routes

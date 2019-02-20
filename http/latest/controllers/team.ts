@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import Sql from "@repositories/sql";
 import Res from "@http/controllers/util";
 
-class Teams
+class team
 {
   private sql: Sql;
 
@@ -20,4 +20,4 @@ class Teams
   }
 }
 
-export default Teams;
+export default team;
