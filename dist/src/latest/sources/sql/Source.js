@@ -57,9 +57,6 @@ var Source = /** @class */ (function (_super) {
     function Source() {
         return _super.call(this) || this;
     }
-    Source.prototype.fetchMatches = function (players) {
-        throw new Error("Method not implemented.");
-    };
     Source.prototype.getPlayersList = function () {
         return __awaiter(this, void 0, void 0, function () {
             var query, filter, res;
@@ -89,7 +86,7 @@ var Source = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.get(query, filter, new Mapper.TeamsMapper())];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, res];
+                        return [2 /*return*/, this.fetchTeam(res)];
                 }
             });
         });
@@ -112,7 +109,7 @@ var Source = /** @class */ (function (_super) {
     };
     Source.prototype.getTeamsDetails = function (teamId) {
         return __awaiter(this, void 0, void 0, function () {
-            var query, params, res;
+            var query, params, res, fetch;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -121,39 +118,52 @@ var Source = /** @class */ (function (_super) {
                         return [4 /*yield*/, this.getDetails(query, params, new Mapper.TeamsMapper())];
                     case 1:
                         res = _a.sent();
-                        return [2 /*return*/, res[0]];
+                        return [4 /*yield*/, this.fetchTeam(res)];
+                    case 2:
+                        fetch = _a.sent();
+                        return [2 /*return*/, fetch[0]];
                 }
             });
         });
     };
-    Source.prototype.fetchPlayer = function (players) {
+    Source.prototype.fetchTeam = function (teams) {
         return __awaiter(this, void 0, void 0, function () {
-            var cQuery, cplayers, _i, players_1, Player_1, player, _a, _b;
-            return __generator(this, function (_c) {
-                switch (_c.label) {
+            var cQuery, _i, teams_1, team, players, cPlayers, _a, cPlayers_1, player, _b, _c;
+            return __generator(this, function (_d) {
+                switch (_d.label) {
                     case 0:
                         cQuery = "SELECT id_player FROM player WHERE id_team = ?";
-                        cplayers = [];
-                        _i = 0, players_1 = players;
-                        _c.label = 1;
+                        _i = 0, teams_1 = teams;
+                        _d.label = 1;
                     case 1:
-                        if (!(_i < players_1.length)) return [3 /*break*/, 5];
-                        Player_1 = players_1[_i];
-                        return [4 /*yield*/, this.getPlayersDetails(Player_1.id)];
+                        if (!(_i < teams_1.length)) return [3 /*break*/, 8];
+                        team = teams_1[_i];
+                        players = [];
+                        return [4 /*yield*/, this.getAny(cQuery, [team.id])];
                     case 2:
-                        player = _c.sent();
-                        _b = (_a = cplayers).push;
-                        return [4 /*yield*/, this.getPlayersDetails(player.id)];
+                        cPlayers = _d.sent();
+                        _a = 0, cPlayers_1 = cPlayers;
+                        _d.label = 3;
                     case 3:
-                        _b.apply(_a, [_c.sent()]);
-                        Object.assign(players, {
-                            player: Player_1
-                        });
-                        _c.label = 4;
+                        if (!(_a < cPlayers_1.length)) return [3 /*break*/, 6];
+                        player = cPlayers_1[_a];
+                        _c = (_b = players).push;
+                        return [4 /*yield*/, this.getPlayersDetails(player.id)];
                     case 4:
+                        _c.apply(_b, [_d.sent()]);
+                        _d.label = 5;
+                    case 5:
+                        _a++;
+                        return [3 /*break*/, 3];
+                    case 6:
+                        Object.assign(teams, {
+                            MyPlayers: players
+                        });
+                        _d.label = 7;
+                    case 7:
                         _i++;
                         return [3 /*break*/, 1];
-                    case 5: return [2 /*return*/, players];
+                    case 8: return [2 /*return*/, teams];
                 }
             });
         });
@@ -236,7 +246,7 @@ var Source = /** @class */ (function (_super) {
     };
     Source.prototype.setTeam = function (teamId, name, players) {
         return __awaiter(this, void 0, void 0, function () {
-            var query, columns, dQuery, cQuery, _i, players_2, c, player, cValues;
+            var query, columns, dQuery, cQuery, _i, players_1, c, player, cValues;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -253,11 +263,11 @@ var Source = /** @class */ (function (_super) {
                     case 2:
                         _a.sent();
                         cQuery = "INSERT INTO player (id_player,nombre, id_team)";
-                        _i = 0, players_2 = players;
+                        _i = 0, players_1 = players;
                         _a.label = 3;
                     case 3:
-                        if (!(_i < players_2.length)) return [3 /*break*/, 7];
-                        c = players_2[_i];
+                        if (!(_i < players_1.length)) return [3 /*break*/, 7];
+                        c = players_1[_i];
                         return [4 /*yield*/, this.savePlayer(c)];
                     case 4:
                         player = _a.sent();

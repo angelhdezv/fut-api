@@ -25,7 +25,7 @@ class Source extends Executor implements Repository
     const filter = [];
     if (teamId) filter.push(new Pair("id_team", teamId));
     const res = await this.get(query, filter, new Mapper.TeamsMapper());
-    return res;
+     return this.fetchTeam(res);
   }
 
   async getPlayersDetails(playerId: number): Promise<Player>
@@ -43,19 +43,24 @@ class Source extends Executor implements Repository
       `SELECT * FROM team WHERE id_team = ?`;
     const params = [teamId];
     const res = await this.getDetails(query, params, new Mapper.TeamsMapper());
-    return res[0];
+    const fetch = await this.fetchTeam(res);
+    return fetch[0];
   }
 
   async fetchTeam(teams: Teams[]): Promise<Teams[]>
   {
-    for (let player of players) {
-      const user = await this.getPlayersDetails(player.id);
-      Object.assign(players,
+    const cQuery = "SELECT id_player FROM player WHERE id_team = ?";
+    for (let team of teams) {
+      let players = [];
+      let cPlayers = await this.getAny(cQuery, [team.id]);
+      for (let player of cPlayers)
+        players.push(await this.getPlayersDetails(player.id))
+      Object.assign(teams,
         {
-          user: user
+          MyPlayers: players
         });
     }
-    return players;
+    return teams;
   }
 
   async savePlayer(player: Player): Promise<Player>
