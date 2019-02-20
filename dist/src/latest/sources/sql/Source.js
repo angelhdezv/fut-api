@@ -148,7 +148,7 @@ var Source = /** @class */ (function (_super) {
                         if (!(_a < cPlayers_1.length)) return [3 /*break*/, 6];
                         player = cPlayers_1[_a];
                         _c = (_b = players).push;
-                        return [4 /*yield*/, this.getPlayersDetails(player.id)];
+                        return [4 /*yield*/, this.getPlayersDetails(player)];
                     case 4:
                         _c.apply(_b, [_d.sent()]);
                         _d.label = 5;
