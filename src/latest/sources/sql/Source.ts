@@ -55,9 +55,9 @@ class Source extends Executor implements Repository
       let cPlayers = await this.getAny(cQuery, [team.id]);
       for (let player of cPlayers)
         players.push(await this.getPlayersDetails(player.id))
-      Object.assign(teams,
+      Object.assign(team,
         {
-          MyPlayers: players
+          players: players
         });
     }
     return teams;

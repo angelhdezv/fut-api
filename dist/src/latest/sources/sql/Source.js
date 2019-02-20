@@ -156,8 +156,8 @@ var Source = /** @class */ (function (_super) {
                         _a++;
                         return [3 /*break*/, 3];
                     case 6:
-                        Object.assign(teams, {
-                            MyPlayers: players
+                        Object.assign(team, {
+                            players: players
                         });
                         _d.label = 7;
                     case 7:
