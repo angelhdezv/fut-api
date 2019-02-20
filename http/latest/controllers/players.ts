@@ -42,13 +42,8 @@ class Players
   async update(req: Request, res: Response)
   {
     const id = req.params.id;
-    const name=req.params.name;
-    let teams = new Teams(Generator.getId())
-            .build(
-              req.params.team
-            );
-    await this.sql.saveTeam(teams);
-    const result = await this.sql.setPlayer(id, name, teams);
+    const teams = req.params.team;
+    const result = await this.sql.setPlayer(id,  teams);
 
     return Res.sendModel(res, result);
   }

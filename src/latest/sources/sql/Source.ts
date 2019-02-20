@@ -79,12 +79,11 @@ class Source extends Executor implements Repository
     return this.getPlayersDetails(player.id);
   }
 
-  async setPlayer(playerId: number, name?: string, Team?: Teams): Promise<Player>
+  async setPlayer(playerId: number, Team?: number): Promise<Player>
   {
     const query = "UPDATE player";
     const columns = [];
-    if (name) columns.push(new Pair("nombre", name));
-    if (Team) columns.push(new Pair("id_team", Team.id));
+    if (Team) columns.push(new Pair("id_team", Team));
     await this.set(query, columns, "id_player", playerId);
     return this.getPlayersDetails(playerId);
   }

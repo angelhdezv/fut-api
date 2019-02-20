@@ -77,7 +77,7 @@ class Routes
      * @apiSuccess {Player} player Player object.
     */
 
-    this.router.put("/players/:id/:name?/:team", (req, res) => this.players.update(req, res));
+    this.router.put("/players/:id/:team?", (req, res) => this.players.update(req, res));
 
     /**
      * @api {put} /players/:id put a player

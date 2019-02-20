@@ -183,7 +183,7 @@ var Source = /** @class */ (function (_super) {
             });
         });
     };
-    Source.prototype.setPlayer = function (playerId, name, Team) {
+    Source.prototype.setPlayer = function (playerId, Team) {
         return __awaiter(this, void 0, void 0, function () {
             var query, columns;
             return __generator(this, function (_a) {
@@ -191,10 +191,8 @@ var Source = /** @class */ (function (_super) {
                     case 0:
                         query = "UPDATE player";
                         columns = [];
-                        if (name)
-                            columns.push(new Util_1.Pair("nombre", name));
                         if (Team)
-                            columns.push(new Util_1.Pair("id_team", Team.id));
+                            columns.push(new Util_1.Pair("id_team", Team));
                         return [4 /*yield*/, this.set(query, columns, "id_player", playerId)];
                     case 1:
                         _a.sent();
