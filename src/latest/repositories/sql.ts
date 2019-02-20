@@ -6,7 +6,7 @@ interface Sql
   getPlayersList(): Promise<Player[]>;
   getTeamsList(playerId?: number): Promise<Teams[]>;
   getPlayersDetails(playerId: number): Promise<Player>;
-  fetchMatches(players: Player[]): Promise<Player[]>;
+  fetchTeam(players: Player[]): Promise<Teams[]>
   savePlayer(player: Player): Promise<Player>;
   setPlayer(playerId: number, Team?: number): Promise<Player>;
   deletePlayer(playerId: number): Promise<void>;

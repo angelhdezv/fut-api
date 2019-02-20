@@ -8,11 +8,7 @@ import * as Mapper from "./Mappers";
 
 class Source extends Executor implements Repository
 {
-  fetchMatches(players: Player[]): Promise<Player[]>
-  {
-    throw new Error("Method not implemented.");
-  }
- 
+  
   async getPlayersList(): Promise<Player[]>
   {
     const query =
@@ -50,16 +46,13 @@ class Source extends Executor implements Repository
     return res[0];
   }
 
-  async fetchPlayer(players: Player[]): Promise<Player[]>
+  async fetchTeam(teams: Teams[]): Promise<Teams[]>
   {
-    const cQuery = "SELECT id_player FROM player WHERE id_team = ?";
-    let cplayers = [];
-    for (let Player of players) {
-      let player = await this.getPlayersDetails(Player.id);
-      cplayers.push(await this.getPlayersDetails(player.id))
+    for (let player of players) {
+      const user = await this.getPlayersDetails(player.id);
       Object.assign(players,
         {
-          player: Player
+          user: user
         });
     }
     return players;
